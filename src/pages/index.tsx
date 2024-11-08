@@ -1,7 +1,15 @@
+"use client"
 import Image from 'next/image';
+import { useEffect } from 'react';
+
 import LogoImg from '../assets/logo.svg';
+import { axeAccessibilityReporter } from '@/utils/axeAccessibilityReporter';
 
 export default function Home() {
+  useEffect(() => {
+    axeAccessibilityReporter()
+  }, [])
+
   return (
     <div>
       <div className="flex justify-between max-w-[1064px] w-full mx-auto px-5 py-6">
