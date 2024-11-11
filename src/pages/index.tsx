@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 
 import LogoImg from '../assets/logo.svg';
+import * as Dialog from '@radix-ui/react-dialog'
 import { axeAccessibilityReporter } from '@/utils/axeAccessibilityReporter';
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div>
+    <>
       <div className="flex justify-between max-w-[1064px] w-full mx-auto px-5 py-6">
         <Image src={LogoImg} alt="Logo" width={286 / 2} />
         <div className="flex items-center space-x-4">
@@ -52,6 +53,41 @@ export default function Home() {
         </p>
         <h3 className="mb-5">O que é acessibilidade, afinal?</h3>
       </div>
-    </div>
+
+      <footer className="flex justify-between max-w-[1064px] w-full mx-auto px-5 py-6">
+        <Image src={LogoImg} alt="Logo" width={286 / 2} />
+
+        <nav aria-label="Rodapé">
+          <Dialog.Root>
+            <Dialog.Trigger asChild>
+              <button
+                type="button"
+                className="px-8 py-4 bg-[#202024] text-[#996dff] rounded"
+              >
+                Termos de uso
+              </button>
+            </Dialog.Trigger>
+            <Dialog.Portal>
+              <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-75" />
+
+              <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 md:p-12 rounded-lg shadow-lg text-gray-800 max-w-md w-full">
+                <Dialog.Title className="text-xl font-semibold mb-4 text-center">Termo de Uso</Dialog.Title>
+                <Dialog.Description className="mb-6 text-center">
+                  Esses são os termos de uso
+                </Dialog.Description>
+
+                <Dialog.Close asChild>
+                  <button className="w-full px-6 py-3 bg-[#8257eb] text-white text-lg font-bold rounded-md hover:bg-[#6c47cc]">
+                    Fechar
+                  </button>
+                </Dialog.Close>
+              </Dialog.Content>
+            </Dialog.Portal>
+          </Dialog.Root>
+        </nav>
+      </footer>
+
+
+    </>
   );
 }
